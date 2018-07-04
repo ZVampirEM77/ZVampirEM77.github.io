@@ -1,40 +1,33 @@
-var gulp        = require('gulp'),
-	plumber     = require('gulp-plumber'),
-	browserSync = require('browser-sync'),
-	stylus      = require('gulp-stylus'),
-	uglify      = require('gulp-uglify'),
-	concat      = require('gulp-concat'),
-	jeet        = require('jeet'),
-	rupture     = require('rupture'),
-	koutoSwiss  = require('kouto-swiss'),
-	prefixer    = require('autoprefixer-stylus'),
-	imagemin    = require('gulp-imagemin'),
-	cp          = require('child_process');
-
-var messages = {
-	jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
-};
+var gulp = require('gulp');
+var csso = require('gulp-csso');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var plumber = require('gulp-plumber');
+var cp = require('child_process');
+var imagemin = require('gulp-imagemin');
+var browserSync = require('browser-sync');
 
 var jekyllCommand = (/^win/.test(process.platform)) ? 'jekyll.bat' : 'jekyll';
 
-/**
+/*
  * Build the Jekyll Site
+ * runs a child process in node that runs the jekyll commands
  */
 gulp.task('jekyll-build', function (done) {
-	browserSync.notify(messages.jekyllBuild);
 	return cp.spawn(jekyllCommand, ['build'], {stdio: 'inherit'})
 		.on('close', done);
 });
 
-/**
- * Rebuild Jekyll & do page reload
+/*
+ * Rebuild Jekyll & reload browserSync
  */
 gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 	browserSync.reload();
 });
 
-/**
- * Wait for jekyll-build, then launch the Server
+/*
+ * Build the jekyll site and launch browser-sync
  */
 gulp.task('browser-sync', ['jekyll-build'], function() {
 	browserSync({
@@ -44,36 +37,28 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
 	});
 });
 
-/**
- * Stylus task
- */
-gulp.task('stylus', function(){
-		gulp.src('src/styl/main.styl')
-		.pipe(plumber())
-		.pipe(stylus({
-			use:[koutoSwiss(), prefixer(), jeet(),rupture()],
-			compress: true
-		}))
-		.pipe(gulp.dest('_site/assets/css/'))
-		.pipe(browserSync.reload({stream:true}))
-    .pipe(gulp.dest('assets/css'));
+/*
+* Compile and minify sass
+*/
+gulp.task('sass', function() {
+  gulp.src('src/styles/**/*.scss')
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(csso())
+    .pipe(gulp.dest('assets/css/'));
 });
 
-/**
- * Javascript Task
- */
-gulp.task('js', function(){
-	return gulp.src('src/js/**/*.js')
-		.pipe(plumber())
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('assets/js/'))
-		.pipe(browserSync.reload({stream:true}))
-    .pipe(gulp.dest('_site/assets/js/'));
-});
+/*
+* Compile fonts
+*/
+gulp.task('fonts', function() {
+	gulp.src('src/fonts/**/*.{ttf,woff,woff2}')
+	.pipe(plumber())
+	.pipe(gulp.dest('assets/fonts/'));
+})
 
-/**
- * Imagemin Task
+/*
+ * Minify images
  */
 gulp.task('imagemin', function() {
 	return gulp.src('src/img/**/*.{jpg,png,gif}')
@@ -83,18 +68,22 @@ gulp.task('imagemin', function() {
 });
 
 /**
- * Watch stylus files for changes & recompile
- * Watch html/md files, run jekyll & reload BrowserSync
+ * Compile and minify js
  */
-gulp.task('watch', function () {
-	gulp.watch('src/styl/**/*.styl', ['stylus']);
-	gulp.watch('src/js/**/*.js', ['js']);
-	gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
-	gulp.watch(['*.html', '_includes/*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+gulp.task('js', function(){
+	return gulp.src('src/js/**/*.js')
+		.pipe(plumber())
+		.pipe(concat('main.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('assets/js/'))
 });
 
-/**
- * Default task, running just `gulp` will compile the stylus,
- * compile the jekyll site, launch BrowserSync & watch files.
- */
-gulp.task('default', ['js', 'stylus', 'browser-sync', 'watch']);
+gulp.task('watch', function() {
+  gulp.watch('src/styles/**/*.scss', ['sass', 'jekyll-rebuild']);
+  gulp.watch('src/js/**/*.js', ['js']);
+  gulp.watch('src/fonts/**/*.{tff,woff,woff2}', ['fonts']);
+  gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
+  gulp.watch(['*html', '_includes/*html', '_layouts/*.html'], ['jekyll-rebuild']);
+});
+
+gulp.task('default', ['js', 'sass', 'fonts', 'browser-sync', 'watch']);
