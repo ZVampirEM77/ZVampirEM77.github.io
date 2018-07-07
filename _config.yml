@@ -1,19 +1,28 @@
-# Site settings
 title: ZVampirEM's Blog
-description: 张恩铭的博客
-# baseurl: "/particle" # the subpath of your site, e.g. /blog
-# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+description: > # this means to ignore newlines until "baseurl:"
+  To Be Better!
+permalink: ':title/'
+#baseurl: "/flexible-jekyll" # the subpath of your site, e.g. /blog
+#url: "" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
 
-# User settings
-username: ZVampirEM77
-user_description: Stay Hungry, Stay Foolish!
-user_title: Software Developer, Cepher
-email: zvampirem77@gmail.com
-twitter_username: https://twitter.com/Em77Z
-github_username:  https://github.com/ZVampirEM77
+# Author Settings
+author: ZVampirEM # add your name
+author-img: ./my_ironman.jpeg  # add your photo
+about-author: 云计算领域软工一枚, 专注于 Ceph, Kubernetes 和 Tenserflow 等技术。希望能够通过不断学习，成为更好的自己！ # add description
+social-twitter: Em77Z
+social-github: ZVampirEM77
+social-email: zvampirem77@gmail.com
 
-# Google-analytics
-google-analytics:
-  id: ""
 
-exclude: ['package.json', 'src' , 'node_modules']
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+
+paginate: 8
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
