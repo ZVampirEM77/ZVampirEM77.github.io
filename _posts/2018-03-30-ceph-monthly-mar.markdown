@@ -3,7 +3,7 @@ layout: post
 title: Ceph 开发者月报 - 三月篇
 date: 2018-03-30 00:00:00 +0300
 img: ceph-monthly-mar.png # Add image post (optional)
-stickie: true
+stickie: false
 tags: [Ceph 月报] # add tag
 ---
 
