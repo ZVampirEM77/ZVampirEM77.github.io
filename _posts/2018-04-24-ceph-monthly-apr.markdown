@@ -58,7 +58,7 @@ MFA (Multi-Factor Authentication) ，顾名思义，多重要素认证，是 AWS
 >
 > —————————————————–
 >
-> $ radosgw-admin mfa create –uid=\<user-id\> –totp-serial=\<serial\> –totp-seed=\<seed\> [ –totp-seed-type=\<hex|base32\> ] [ –totp-seconds=\<num-seconds\> ] [ –totp-window=\<twindow\> ]
+> $ radosgw-admin mfa create –uid=\<user-id\> –totp-serial=\<serial\> –totp-seed=\<seed\> [ –totp-seed-type=\<hex\|base32\> ] [ –totp-seconds=\<num-seconds\> ] [ –totp-window=\<twindow\> ]
 >
 > <br />
 >
@@ -89,7 +89,7 @@ MFA (Multi-Factor Authentication) ，顾名思义，多重要素认证，是 AWS
 >
 > Test a TOTP token pin, needed for validating that TOTP functions correctly.
 >
-> # radosgw-admin mfa check –uid=\<user-id\> –totp-serial=\<serial\> –totp-pin=\<pin\>
+> $ radosgw-admin mfa check –uid=\<user-id\> –totp-serial=\<serial\> –totp-pin=\<pin\>
 >
 >
 > Re-sync MFA TOTP token
@@ -99,7 +99,7 @@ MFA (Multi-Factor Authentication) ，顾名思义，多重要素认证，是 AWS
 > In order to re-sync the TOTP token (in case of time skew). This requires
 > feeding two consecutive pins: the previous pin, and the current pin.
 >
-> # radosgw-admin mfa resync –uid=\<user-id\> –totp-serial=\<serial\> –totp-pin=\<prev-pin\> –totp=pin=\<current-pin\>
+> $ radosgw-admin mfa resync –uid=\<user-id\> –totp-serial=\<serial\> –totp-pin=\<prev-pin\> –totp=pin=\<current-pin\>
 
 <br />
 <br />
