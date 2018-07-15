@@ -2,7 +2,7 @@
 layout: post
 title: Ceph 开发者月报 - 二月篇
 date: 2018-02-27 00:00:00 +0300
-img: ceph-monthly-feb.png # Add image post (optional)
+img: ceph_monthly/February/ceph-monthly-feb.png # Add image post (optional)
 stickie: false
 tags: [Ceph 月报] # add tag
 ---
@@ -180,11 +180,11 @@ librbd: initial hooks for clone v2 support (https://github.com/ceph/ceph/pull/20
 
 RBD 是支持 Snapshot Layering 功能的，即快照分层功能。该功能主要是支持对一个 image 的 snapshot 快照进行 clone 操作，生成一个新的 image，在快照这一层面形成一个父子关系的层级结构，如图：
 
-![snapshot layer](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-feb-1.png?raw=true)
+![snapshot layer](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/February/ceph-monthly-feb-1.png?raw=true)
 
 整个功能的一个简化的处理流程为：
 
-![snapshot layer workflow](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-feb-2.png?raw=true)
+![snapshot layer workflow](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/February/ceph-monthly-feb-2.png?raw=true)
 
 在这里，把上述的针对 snapshot 的 clone 处理功能称为 clone v1。可以看到，在 clone v1 中，在对 snapshot 进行 clone 之前，需要先将 snapshot 设置为 protected，也就是说，在该 snapshot 所有相关的 child images (即 clone 自该 snapshot 的所有 child images) 被删除或解除父子关系 (rbd flatten 命令) 前，该 snapshot 是无法被删除的。
 
@@ -248,7 +248,7 @@ http://pad.ceph.com/p/pg-merging
 
 mgr/dashboard: add configuration setting browser (https://github.com/ceph/ceph/pull/20043)
 
-![dashboard configuration setting browser](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-feb-3.png?raw=true)
+![dashboard configuration setting browser](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/February/ceph-monthly-feb-3.png?raw=true)
 
 <br />
 

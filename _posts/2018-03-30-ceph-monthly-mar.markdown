@@ -2,7 +2,7 @@
 layout: post
 title: Ceph 开发者月报 - 三月篇
 date: 2018-03-30 00:00:00 +0300
-img: ceph-monthly-mar.png # Add image post (optional)
+img: ceph_monthly/March/ceph-monthly-mar.png # Add image post (optional)
 stickie: false
 tags: [Ceph 月报] # add tag
 ---
@@ -164,13 +164,13 @@ Ceph 社区后面的工作重点之一，就是对 Ceph 的性能进行提高。
 
 Ceph Recovery 故障恢复处理在整个 Ceph 框架体系中，是至关重要的一部分。但是由于处理机制的问题，导致 Ceph 在进行 Recovery 处理过程中，对客户端的 IO 请求处理性能低到了惨不忍睹的地步，如图是我们之前的测试结果：
 
-![ceph osd recovery](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-mar-1.png?raw=true)
+![ceph osd recovery](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/March/ceph-monthly-mar-1.png?raw=true)
 
 在上面的提交中，社区为 Ceph 引入了 Async Recovery 处理的机制，即将 Recovery 的处理过程异步化。
 
 之前我们也尝试通过引入 Async Recovery 来解决 Ceph Recovery 处理过程中的性能问题。之前我们尝试 Async Recovery 测试结果如图<span style="color:red;">(特别说明并非对该提交的测试结果)</span>：
 
-![ceph osd async recovery](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-mar-2.png?raw=true)
+![ceph osd async recovery](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/March/ceph-monthly-mar-2.png?raw=true)
 
 <br />
 

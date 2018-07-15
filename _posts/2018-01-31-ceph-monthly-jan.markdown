@@ -2,7 +2,7 @@
 layout: post
 title: Ceph 开发者月报 - 一月篇
 date: 2018-01-31 00:00:00 +0300
-img: ceph-monthly-jan.png # Add image post (optional)
+img: ceph_monthly/January/ceph-monthly-jan.png # Add image post (optional)
 stickie: false
 tags: [Ceph 月报] # add tag
 ---
@@ -116,7 +116,7 @@ mon: centralized config (https://github.com/ceph/ceph/pull/20172) <span style="c
 
 mgr/dashboard: RGW page (https://github.com/ceph/ceph/pull/19512)
 
-![dashboard rgw page](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph-monthly-jan-1.png?raw=true)
+![dashboard rgw page](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph_monthly/January/ceph-monthly-jan-1.png?raw=true)
 
 <br />
 <br />
