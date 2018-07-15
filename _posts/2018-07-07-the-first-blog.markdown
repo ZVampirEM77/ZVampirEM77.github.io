@@ -2,7 +2,7 @@
 layout: post
 title: 开篇
 date: 2018-07-07 00:00:00 +0300
-img: first_blog.jpeg # Add image post (optional)
+img: others/first_blog.jpeg # Add image post (optional)
 stickie: true
 tags: [杂谈] # add tag
 ---
