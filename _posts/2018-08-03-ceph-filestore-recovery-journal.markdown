@@ -93,6 +93,9 @@ $ ps aux |grep ceph-osd
 - 修复 journal
 
 ```
+# 查看journal指向的磁盘，清空旧journal
+# dd if=/dev/zero of=/dev/disk/by-partuuid/793b35bc-a0ba-4aae-ae62-4c63558e199c bs=1M count=100
+
 $ ./bin/ceph-osd --mkjournal -i 1
 ```
 
