@@ -41,6 +41,8 @@ $ ./bin/rbd -p test ls
 <br />
 <br />
 
+# 实验
+
 - 查看 ceph-osd 进程
 
 ```
@@ -127,3 +129,8 @@ $ ./bin/ceph-osd -i 1 -c ./ceph.conf
 ![ceph-s](https://github.com/ZVampirEM77/ZVampirEM77.github.io/blob/master/assets/img/ceph/osd/filestore/journal/ceph_filestore_journal_10.png?raw=true)
 
 可以看到，集群一切恢复正常。
+
+
+# Reference
+
+https://ceph.com/geen-categorie/ceph-recover-osds-after-ssd-journal-failure/
