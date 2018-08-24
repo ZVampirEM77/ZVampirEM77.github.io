@@ -1,0 +1,80 @@
+---
+layout: post
+title: Go 语言学习笔记 (持续更新)
+date: 2018-08-24 00:00:00 +0300
+img: go/study_go/study_go_1.jpeg # Add image post (optional)
+stickie: false
+tags: [Go] # add tag
+---
+
+# 新手必知的 Go 的坑
+
+## go build command-line-arguments: no non-test Go files in ...
+
+*场景*
+
+本地有一个 go 源文件，被命名为 var_test.go，执行
+
+```
+$ go build var_test.go
+```
+
+进行编译时，报出如上错误。
+
+*原因*
+
+/_test 后缀在 Go 语言中有着特殊的含义，是用来给 Go 程序做测试的，build 工具会忽略它们。
+
+*解决方案*
+
+删除源文件中的 /_test 后缀名即可。
+
+<br />
+<br />
+
+## syntax error: unexpected semicolon or newline before {
+
+*场景*
+
+在本地 go 源文件中，以如下方式编写程序：
+
+```
+...
+
+func main()
+{
+    ...
+}
+
+```
+
+进行编译时，则会报出如上错误。
+
+*原因*
+
+左大括号 { 不能单独放一行。
+
+Go 比较特别，遵守分号注入规则（automatic semicolon injection）：编译器会在每行代码尾部特定分隔符后加 ; 来分隔多条语句，比如会在 ) 后加分号：
+
+```
+main()
+{
+    println("hello world")
+}
+
+// 等效于
+func main();    // 无函数体
+{
+    println("hello world")
+}
+```
+
+因此会报出，syntax error: unexpected semicolon or newline before { 的错误。
+
+*解决方案*
+
+```
+main() {
+    println("hello world")
+}
+```
