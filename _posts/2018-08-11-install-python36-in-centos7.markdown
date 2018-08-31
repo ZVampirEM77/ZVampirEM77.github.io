@@ -58,10 +58,17 @@ $ yum install readline-devel
 # 编译安装源码包
 
 ```
-$ ./configure --prefix=/usr/local/python3.6 --enable-optimizations --with-ssl
+$ ./configure --prefix=/usr/local/python3.6 --enable-optimizations --with-ssl --enable-shared
 ```
 
-此处，加入 --with-ssl 编译选项是为了解决后面通过 pip 安装软件包时，可能会报出 ssl 相关的错误
+此处，加入 --with-ssl 编译选项是为了解决后面通过 pip 安装软件包时，可能会报出 ssl 相关的错误。
+
+加入 --enable-shared 配置选项，以支持后面其他服务依赖 python3.6 的库文件来编译动态共享库，否则会报出类似如下的错误:
+
+```
+relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object; recompile with -fPIC
+...
+```
 
 ```
 $ make -j16
