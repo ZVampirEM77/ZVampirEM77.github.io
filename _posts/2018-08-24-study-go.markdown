@@ -73,6 +73,206 @@ const (
 ```
 
 <br />
+
+### 空指针
+
+Go 语言中，空指针表示为 nil
+
+<br />
+
+### 结构体指针
+
+在 Go 语言中，使用结构体指针访问结构体成员时，也是使用 “.” 操作符，如：
+
+```
+struct_pointer.title
+```
+
+<br />
+
+### Go 语言的切片 (slice)
+
+Go 语言的切片是对数组的抽象。Go 数组的长度是不可变的，在特定场景中这样的集合就不太适用，Go 中提供了一种灵活，功能强悍的内置类型切片 ("动态数组")，与数组相比切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。
+
+#### 切片的定义
+
+可以通过声明一个未指定大小的数组来定义切片
+
+```
+var identifier []type
+```
+
+或使用 make 函数来创建切片
+
+```
+var slice1 []type = make([]type, len)
+
+简写成
+
+slice1 := make([]type, len)
+```
+
+这里 len 是数组的长度并且也是切片的初始长度。
+
+
+#### 切片的初始化
+
+```
+s :=[] int {1,2,3}
+```
+
+直接初始化切片，[] 表示是切片类型，{1,2,3} 初始化值依次是 1, 2, 3。 其 len = 3。
+
+```
+s := arr[:]
+```
+
+初始化切片 s 为数组 arr 的引用。
+
+```
+s := arr[startIndex:endIndex]
+```
+
+将 arr 中从下标 startIndex 到 endIndex - 1 下的元素创建为一个新的切片。
+
+```
+s := arr[startIndex:]
+```
+
+缺省 endIndex 时表示一直到 arr 的最后一个元素。
+
+```
+s := arr[:endIndex]
+```
+
+缺省 startIndex 时表示从 arr 的第一个元素开始。
+
+```
+s1 := s[startIndex:endIndex]
+```
+
+通过切片 s 初始化切片 s1
+
+
+#### 空切片
+
+一个切片在未初始化之前默认为 nil，长度为 0。
+
+
+#### 切片容量
+
+切片的容量，实际上就是切片所对应的底层数组的大小。当切片中的元素个数超过当前切片的容量时，会以两倍于当前容量的大小来扩展切片的容量。上述扩容操作都是在 append 函数中完成的。
+
+既然 append 函数能够很好的帮助我们解决动态扩容的问题，那么我们是否还要在声明切片时去指定容量呢？关于这个问题的一个很好的说明在下文中：
+
+https://linux.cn/article-8564-1.html
+
+<br />
+
+### Go 语言范围(range)
+
+Go 语言中 range 关键字用于 for 循环中迭代数组、切片、通道(channel)、集合(map) 的元素。在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对的 key 值。
+
+<br />
+
+### Go 语言中的 map
+
+Go 语言中 map 是通过 hash 表来实现的。
+
+#### 定义 map
+
+可以使用内建函数 make 也可以使用 map 关键字来定义 map:
+
+```
+/* 声明变量，默认 map 是 nil */
+var map_variable_map[key_data_type]value_data_type
+
+/* 使用 make 函数 */
+map_variable := make(map[key_data_type]value_data_type)
+```
+
+如果不初始化 map，那么就会创建一个 nil map。nil map 不能用来存放键值对。
+
+#### map 初始化
+
+示例：
+
+```
+countryCapitalMap := map[string]string{"France": "Paris", "Italy": "Rome", "Japan": "Tokyo", "India": "New delhi"}
+```
+
+<br />
+
+### Go 语言接口
+
+Go 语言提供了另外一种数据类型即接口，它把所有的具有共性的方法定义在一起，任何其他类型只要实现了这些方法就是实现了接口。
+
+示例：
+
+```
+/* 定义接口 */
+type interface_name interface {
+    method_name1 [return_type]
+    method_name2 [return_type]
+    method_name3 [return_type]
+    method_name4 [return_type]
+    method_name5 [return_type]
+    method_name6 [return_type]
+    method_name7 [return_type]
+}
+
+/* 定义结构体 */
+type struct_name struct {
+}
+
+/* 实现接口方法 */
+func (struct_name_variable struct_name) method_name1() [return type] {
+    /* 实现方法 */
+}
+
+...
+func (struct_name_variable struct_name) method_namen() [return type] {
+    /* 实现方法 */
+}
+```
+
+<br />
+
+### Go 语言的错误处理
+
+Go 语言通过内置的错误接口提供了非常简单的错误处理机制。
+
+error 类型是一个接口类型，定义为：
+
+```
+type error interface {
+    Error() string
+}
+```
+
+可以在编码中实现 Error 方法来定义错误处理。
+
+<br />
+
+### Go 语言开发工具
+
+本来不打算记录这个的，但是发现了一个比较好的 Go 开发 IDE，而且还是由国人主导开发的，更难能可贵的是，开发者还是我的老乡，所以必须关注一波。
+
+liteide
+
+https://github.com/visualfc/liteide
+
+项目首页
+
+http://liteide.org/cn/
+
+中文文档
+
+http://liteide.org/cn/documents/
+
+
+
+<br />
 <br />
 <br />
 
