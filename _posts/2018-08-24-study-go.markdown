@@ -203,6 +203,30 @@ countryCapitalMap := map[string]string{"France": "Paris", "Italy": "Rome", "Japa
 
 <br />
 
+### Go 语言通道 (channel)
+
+channel, 顾名思义，作用就是在多线程之间传递数据的。
+
+创建无缓冲的 channel
+
+```
+ch := make(chan int)
+```
+
+创建只读 channel
+
+```
+ch_onlyread := make(<-chan int)
+```
+
+创建只写 channel
+
+```
+ch_onlywrite := make(chan<- int)
+```
+
+<br />
+
 ### Go 语言接口
 
 Go 语言提供了另外一种数据类型即接口，它把所有的具有共性的方法定义在一起，任何其他类型只要实现了这些方法就是实现了接口。
@@ -347,3 +371,58 @@ main() {
     println("hello world")
 }
 ```
+
+## fatal error: all goroutines are asleep - deadlock!
+
+即多线程陷入了死锁，程序无法再继续往下执行。
+
+举个例子
+
+```
+ch :=makee(chan int)
+ch <- 1
+go func() {
+    v := <-ch
+    fmt.Println("1")
+}()
+fmt.Println("2")
+```
+
+上面的程序编译执行时，就会报出 deadlock 的错误。
+
+是什么原因造成了死锁呢？
+
+因为我们创建了一个无缓冲的 channel，然后给这个 channel 赋值了。在赋值完成后，主线程就被阻塞了，等待其他线程从通道中读取主线程写入的值，而我们看到子线程是在主线程中为 channel 赋值之后才创建的，因此当主线程阻塞时，并没有其他线程会从通道中去读取值，因此就造成了程序一直阻塞在那里。
+
+两种解决方案：
+
+1. 为 channel 增加缓冲区，然后在程序的最后让主线程休眠一秒
+
+```
+ch := make(chan, int, 1)
+ch <- 1
+go func() {
+    v := <-ch
+    fmt.Println(v)
+} ()
+
+time.Sleep(1 * time.Second)
+fmt.Println("2")
+```
+
+channel 通道的缓冲区实际上就相当于可以用来存储通道传递值的 buffer。对于有缓冲区的 channel，发送方会一直阻塞到数据被写入到缓冲区；如果缓冲区满了，则发送方才会一直阻塞，直到接收方从缓冲区中取走数据后，才会从阻塞状态恢复。
+
+
+2. 将为 channel 赋值操作放到创建子线程后
+
+```
+ch :=makee(chan int)
+go func() {
+    v := <-ch
+    fmt.Println("1")
+}()
+ch <- 1
+fmt.Println("2")
+```
+
+这样可以的原因是，在主线程向 channel 写入数据从而阻塞之前，先创建了子线程，从而在主线程中向 channel 中写入数据，进而主线程阻塞之后，会有子线程从 channel 中读取数据，使得主线程能够从阻塞状态中恢复过来。
