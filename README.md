@@ -17,3 +17,5 @@ Email: zvampirem77@gmail.com
 [Go 语言学习笔记 (持续更新)](http://zvampirem.com/study-go/)
 <br />
 [在 CentOS 中安装 nbd.ko 驱动模块](http://zvampirem.com/install-nbd-in-centos/)
+<br />
+[Tmux 学习笔记](http://zvampirem.com/study-tmux/)
