@@ -2,7 +2,7 @@
 layout: post
 title: CentOS7 上安装 python 3.6
 date: 2018-08-11 00:00:00 +0300
-img: linux/python/install_python36_in_centos7_1.png # Add image post (optional)
+img: linux/install_python_36/install_python36_in_centos7_1.png # Add image post (optional)
 stickie: false
 tags: [Python] # add tag
 ---
