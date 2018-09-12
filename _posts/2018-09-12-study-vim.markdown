@@ -1,0 +1,16 @@
+---
+layout: post
+title: Vim 学习笔记整理
+date: 2018-01-31 00:00:00 +0300
+img: linux/vim/study_vim_1.png # Add image post (optional)
+stickie: false
+tags: [Linux, Vim] # add tag
+---
+
+# Vim 快捷键
+
+## 前后两个字母交换顺序
+
+```
+xp
+```
