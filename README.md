@@ -19,3 +19,5 @@ Email: zvampirem77@gmail.com
 [在 CentOS 中安装 nbd.ko 驱动模块](http://zvampirem.com/install-nbd-in-centos/)
 <br />
 [Tmux 学习笔记](http://zvampirem.com/study-tmux/)
+<br />
+[Vim 学习笔记整理](http://zvampirem.com/study-vim/)
