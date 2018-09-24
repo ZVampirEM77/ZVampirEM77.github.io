@@ -39,7 +39,7 @@ sudo yum localinstall mysql80-community-release-el7-1.noarch.rpm
 sudo yum install mysql-community-server
 ```
 
-<br / >
+<br />
 <br />
 
 # 启动 MySQL
