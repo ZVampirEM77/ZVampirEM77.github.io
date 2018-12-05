@@ -89,3 +89,18 @@ $ python3 -m venv .env
 
 $ source ~/.env/bin/activate
 ```
+
+<br />
+<br />
+
+# 安装时需要的问题
+
+## zipimport.ZipImportError: can't decompress data; zlib not available
+
+解决方法
+
+```
+$ cd Modules/zlib
+$ ./configure
+$ make install
+```
