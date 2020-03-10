@@ -1,7 +1,7 @@
 ---
 layout: post
-title: [转] Specifying Attributes of Types 
-date: 2020-03-03 00:00:00 +0300
+title: 转 -- Specifying Attributes of Types 
+date: 2020-03-10 00:00:00 +0300
 stickie: false
 tags: [Linux, c++] # add tag
 ---
